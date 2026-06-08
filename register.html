@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory System - Register</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+        .main-title {
+            margin: 0 0 20px 0;
+            color: #010e20;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        .login-card {
+            background: #c2d6f1;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .login-card h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: #000000;
+            text-align: center;
+            font-size: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #141414;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #ffffff;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+        .error-alert,
+        .success-alert {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid transparent;
+            display: none;
+        }
+        .error-alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .success-alert {
+            background-color: #e6f4ea;
+            color: #1d6b33;
+            border-color: #c2e0ce;
+        }
+        .info-alert {
+            background-color: #fff4e5;
+            color: #9a5800;
+            border-color: #ffd8a8;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .help-text {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 14px;
+            color: #1c1e21;
+        }
+        .help-text a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="main-title">CSWDO</h1>
+        <div class="login-card">
+            <h2>Create New Account</h2>
+            <div class="info-alert">This registration page is private. Only use this URL if you are authorized to create new accounts.</div>
+            <div id="message-box" class="error-alert"></div>
+            <form action="register_user.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="off" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
+                </div>
+                <button type="submit" class="btn-login">Register</button>
+            </form>
+            <p class="help-text">Already have an account? <a href="index.php">Log in</a></p>
+        </div>
+    </div>
+
+    <div class="developer-credits">
+        Developed by: <br> <strong>JOHN MARVIN VICENTE</strong><br>
+        VISIT: <a href="https://insanevictus.github.io/PersonalWebsite/SocialMedias.html">Personal Website</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const messageBox = document.getElementById('message-box');
+        const error = params.get('error');
+        const success = params.get('success');
+
+        if (success) {
+            messageBox.textContent = decodeURIComponent(success);
+            messageBox.className = 'success-alert';
+            messageBox.style.display = 'block';
+        } else if (error) {
+            messageBox.textContent = decodeURIComponent(error);
+            messageBox.className = 'error-alert';
+            messageBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
